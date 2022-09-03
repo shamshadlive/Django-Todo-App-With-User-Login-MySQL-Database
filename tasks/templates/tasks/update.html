@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Task
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+<div class="container  mt-4 col-xl-6 col-sm-12" style="min-width:500px; background-color: white; ">
+
+
+    <div class="row ">
+
+        <!-- Appname and logut area -->
+        <div class="col-6">
+            <h6 class="logofont p-3">To Do App</h6>
+        </div>
+
+        <div class="col-6 d-flex justify-content-end ">
+
+            <h1 class=" p-3" style="font-family: poppins;font-weight: 400;font-size: small;">Welcome Back ! ,
+                {{request.user.first_name}} <a href="{% url 'logoutuser' %}"> (Logout) </a></h1>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <h1 class="px-4 pt-3" style="font-family: poppins;">Edit Your Task</h1>
+
+    </div>
+
+    <div class="row">
+
+            <div class="container col-10">
+
+          
+                <!-- Update Form -->
+
+                <form method="POST" action="{% url 'update' task.id  %}">
+                    {% csrf_token %}
+                    <div class="container form-floating mb-2  ">
+                        <!-- Title called with ID -->
+                        {{form.title}}
+                        <label style="color: #5e5e5e;" for="floatingInput form-control-placeholder">Edit Your Task</label>
+                    </div>  
+                   
+                
+            </div>
+            <div class="row">  
+                <div class="col-12 d-flex justify-content-center align-items-center">
+
+                    
+                    <h6 class="mx-2" style="text-transform: capitalize; font-weight:400">Put Tikmark for mark as completed</h6>
+                    {{form.complete}}
+                </div>  
+
+             
+
+
+                    
+    
+               
+                
+            </div>
+       
+
+               
+
+                <!-- creater id -->
+                <div style="display: none;">
+                    {{form.creator}} <br> <br>
+                </div>
+
+        </div>
+
+        <div class="container col-3 d-flex justify-content-end">
+            <input class="m-2 btn btn-success " type="submit" name="create user" value="Update">
+            <!-- <button type="submit" name="create user" class="btn btn-success "> Update  </button> -->
+            </form>
+
+            <!-- Delete Form -->
+            <form method="POST" action="{% url 'delete' task.id  %}">
+                {% csrf_token %}
+               
+                    <input class="m-2  btn btn-danger" type="submit" name="delete task" value="Delete">
+                
+            </form>
+
+            <!-- Cancel Home Button-->
+            <a href="{% url 'list' %}"  class="m-2  btn btn-dark" name="cancel" value="Cancel"  >Cancel</a>
+
+        </div>
+
+    
+    
+           
+       
+        
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock content %}

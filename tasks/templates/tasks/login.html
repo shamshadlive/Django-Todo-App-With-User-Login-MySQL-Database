@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+
+Login
+{% endblock title %}
+
+
+
+
+
+{% block  content %}
+
+
+<div class="container" style=" min-width:500px; ">
+
+
+  <div class="row">
+ 
+      <div class="container mt-4 col-xl-6 col-sm-12" style="background-color: white;">
+
+      <h6 class="logofont p-3" >To Do App</h6>    
+      <h1 class="newcolor pt-5 px-5" style="font-family: poppins;" >Login To Your Account Now.</h1> 
+      <h1 class=" px-5" style="font-family: poppins;font-weight: 300;font-size: smaller;" >Let's Make It Personal , with each list</h1> 
+      
+           
+
+            <!-- input Form -->
+
+            <form method="POST" action="">
+              {% csrf_token %}
+
+
+                  <div class="container mb-2  form-floating">
+                  <input name="inputUsername" type="text" class="form-control inputareast" id="floatingInput" placeholder="text">
+                  <label style="color: #5e5e5e;" for="floatingInput">Username</label>
+                  <h7 class="text-danger">
+                      {{form.username.errors}}
+                      </h7>
+                  </div>
+
+
+                  <div class="input-group mb-3">
+                  <div class="container mb-2  form-floating">
+                      <input name="inputPassword" type="password" class="form-control inputareast" id="loginPassword" placeholder="password" aria-describedby="passtogglebutton">
+                      <label style="color: #5e5e5e;" for="loginPassword"> Password   </label>
+                  </div>
+                      <button style="border:none;" class="btn bi bi-eye-slash-fill" type="button" id="passtogglebutton" onclick="togglelogin()"></button>
+                
+                   </div>
+                
+                         
+
+            
+              <button type="submit" name = "create user" class="btn btn-success m-2">Login Now </button>
+
+          </form>
+
+
+          <h6 class="mt-2 mb-4 ms-2"style="font-family: poppins;font-weight: 300;font-size: smaller;"> Not have an account ? <a href="{% url 'register' %}">Register Here </a> </h6>
+          
+          {% for message in messages %}
+
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <h6>{{message}}</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    
+          {% endfor %}
+      
+      
+      
+        </div>
+
+      
+
+
+
+
+
+
+
+      <div class="col-xl-6 col-sm-12 container mt-4"  style="background-color: rgb(210, 246, 255);">
+
+       <img src="{% static 'images/homepic.png' %}" alt="homepic"  style="max-height:100%; max-width:100%;">
+
+         <!-- text carousel -->
+         <div id="carouselExampleInterval" style="pointer-events: none;" class="mb-3 carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="5000">
+              <h1 class="homequotes px-5" >“To-Do lists help us break life into small steps.” — Randy Pausch</h1> 
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+              <h1 class="homequotes px-5" > “We need to do a better job of putting ourselves higher on our own to do list.”— Michelle Obama</h1> 
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+              <h1 class="homequotes px-5" > “Love a Monday morning “to-do” list, gets me so pumped up for the week ahead.” — Patricia Bright</h1> 
+          </div>
+          <div class="carousel-item">
+              <h1 class="homequotes px-5"  > “I love lists. Always have.” — Adam Savage</h1> 
+          </div>
+          </div>
+          
+         </div>
+      
+
+      </div>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
