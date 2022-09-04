@@ -9,6 +9,8 @@ urlpatterns = [
     path('login',views.loginPage , name='login'),
     path('register',views.register , name='register'),
     path('logoutuser',views.logoutuser , name='logoutuser'),
+    path('checkAvailability',views.checkAvailability , name='checkAvailability'),
+    
 
     
   

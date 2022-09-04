@@ -22,19 +22,41 @@ from .forms import *
 
 
 #check username
+def checkAvailability(request):
 
-
-def checkusername(request):
-
-    getData = json.loads(request.body)
-    user_name = getData['checkusername']
-    data = {
-     'is_taken': User.objects.filter(username=user_name).exists(),
-     'user_name': user_name,
    
-    }
+   if request.method=="POST":
 
-    return JsonResponse(data)
+        getdata=json.load(request)
+        
+        print(getdata)
+        id = getdata['id']
+        
+        if id=='Input_Username':
+           user_name = getdata['check_item']
+           data = {
+            'id': id,
+            'is_taken': User.objects.filter(username=user_name).exists(),
+                  }
+
+        elif id=='Input_Email':
+
+            email = getdata['check_item']
+            data = {
+            'id': id,
+            'is_taken': User.objects.filter(email=email).exists(),
+                  }
+        else :
+             data = {
+            'id': 'null',
+                  }
+
+        return JsonResponse(data)
+   else:
+
+    return redirect('/')
+
+
 
 
 
