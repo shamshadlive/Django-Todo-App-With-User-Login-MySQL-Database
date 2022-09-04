@@ -1,6 +1,6 @@
 # Django-Todo-App-With-User-Login-MySQL-Database
 
-This App Created With DJango Frame work , Javascript , Jquery and Bootstrap 
+This App Created With DJango Frame work , Javascript , Jquery , Ajax and  Bootstrap 
 This is a simple Web app which included a user login,registration functions with Django Model Forms
 
 <b>
