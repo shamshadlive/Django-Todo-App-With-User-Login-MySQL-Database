@@ -1,6 +1,6 @@
 # Django-Todo-App-With-User-Login-MySQL-Database
 
-This App Created With DJango Frame work , Javascript , Jquery and Bootstrap 
+This App Created With DJango Frame work , Javascript , Jquery , Ajax and  Bootstrap 
 This is a simple Web app which included a user login,registration functions with Django Model Forms
 
 <b>
@@ -38,3 +38,9 @@ Different Tasks For Different User's
 }
 
 Don't Forget to add SECRET_KEY  in Settings.py
+
+
+
+Update - Added Ajax realtime form validation<br>
++++++++++++++++++++++++++++++++++++++++++++++
+![image](https://user-images.githubusercontent.com/73699937/188325443-618cfcd8-513b-42d1-8aa4-05bab6b3f7ae.png)
