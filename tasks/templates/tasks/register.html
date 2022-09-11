@@ -14,6 +14,8 @@ Register
     
 window.addEventListener('load', function () {
 
+    
+
     //retain values even if reloades
     if('{{form.first_name.value}}'=='None'){
         document.getElementById("Input_Firstname").value = "";
@@ -27,12 +29,12 @@ window.addEventListener('load', function () {
         document.getElementById("Input_Email").value = "";
     }
 
+
+   
     
    
 
   })
-
-
 
 
 </script>
@@ -59,14 +61,14 @@ window.addEventListener('load', function () {
 
                     <div class="container form-floating mb-2  ">
                        
-                    <input name="first_name" value="{{form.first_name.value}}" type="text" class="form-control inputareast" id="Input_Firstname" placeholder="text" >
+                    <input required name="first_name" value="{{form.first_name.value}}" type="text" class="form-control inputareast" id="Input_Firstname" placeholder="text" >
                     <label style="color: #5e5e5e;" for="floatingInput form-control-placeholder">First Name</label>
 
                     </div>
 
                     <div class="container mb-2  form-floating">
                     <!-- //on change checking username availablity -->
-                    <input onkeyup="checkAvailability(this.id);" name="username" type="text" class="form-control inputareast" value="{{form.username.value}}" id="Input_Username" placeholder="text">
+                    <input required onkeyup="checkAvailability(this.id);" name="username" type="text" class="form-control inputareast" value="{{form.username.value}}" id="Input_Username" placeholder="text">
                     <label style="color: #5e5e5e;" for="Input_Username" >Username</label>
 
                     <!-- area for show errors -->
@@ -78,7 +80,7 @@ window.addEventListener('load', function () {
 
                     <div class="container mb-2  form-floating">
                          <!-- //on change checking email availablity -->
-                        <input onkeyup="checkemail(this.id);"  name="email" type="email" class="inputareast form-control" id="Input_Email" placeholder="email"  value="{{form.email.value}}">
+                        <input required onkeyup="checkemail(this.id);"  name="email" type="email" class="inputareast form-control" id="Input_Email" placeholder="email"  value="{{form.email.value}}">
                         <label style="color: #5e5e5e;" for="Input_Email">Email Address</label>
                         <h6 class="text-danger" style="font-weight: 400;" id="Input_Email_Error" >
                             {{form.email.errors}}
@@ -87,7 +89,7 @@ window.addEventListener('load', function () {
 
                         <div class="input-group mb-3">
                             <div class="container mb-2  form-floating">
-                                <input  onkeyup="checkpassword();" name="password1" type="password" class="form-control inputareast" id="loginPassword1" placeholder="password" aria-describedby="passtogglebutton">
+                                <input required  onkeyup="checkpassword();" name="password1" type="password" class="form-control inputareast" id="loginPassword1" placeholder="password" aria-describedby="passtogglebutton">
                                 <label style="color: #5e5e5e;" for="loginPassword1"> Password   </label>
                             </div>
                                 <button style="border:none;" class="btn bi bi-eye-slash-fill" type="button" id="passtogglebutton1" onclick="togglebutton1()"></button>
@@ -96,7 +98,7 @@ window.addEventListener('load', function () {
 
                         <div class="input-group mb-3">
                             <div class="container mb-2  form-floating">
-                                <input onkeyup="checkpassword();" name="password2" type="password" class="form-control inputareast" id="loginPassword2" placeholder="password" aria-describedby="passtogglebutton">
+                                <input required onkeyup="checkpassword();" name="password2" type="password" class="form-control inputareast" id="loginPassword2" placeholder="password" aria-describedby="passtogglebutton">
                                 <label style="color: #5e5e5e;" for="loginPassword2">Confirm Password </label>
                             </div>
                                 <button style="border:none;" class="btn bi bi-eye-slash-fill" type="button" id="passtogglebutton2" onclick="togglebutton2()"></button>

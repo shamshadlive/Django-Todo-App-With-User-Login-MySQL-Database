@@ -55,9 +55,9 @@ function getCookie(name) {
 
 
 // setting error along with passing id 
-function setError(id,field){
+function setError(id,field,condition){
 
-  if (getDataResponse['is_taken'])
+  if (condition)
   {
       document.getElementById(id+"_Error").innerHTML = "A user with this "+field+" already exists."
       document.getElementById(id+"_Error").className = "text-danger"
@@ -73,76 +73,82 @@ function setError(id,field){
   
 }
 
+
 //check availablity of user inputed field
 function checkAvailability(id)
 {
-  //CREATE HTTP REQUEST
-  httpRequest = new XMLHttpRequest();
-  httpRequest.open('POST', 'checkAvailability' , true);
-  httpRequest.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
-  
-  httpRequest.setRequestHeader("Content-type", "application/json");
-  
 
-  //get item
-  var check_item=document.getElementById(id).value;
+    var check_item=document.getElementById(id).value;
+    //checking if null value then removing the bottom area 
+    if (!check_item)
+      {
+        document.getElementById(id+"_Error").innerHTML = "" 
+      }
+    else{
 
-  //checking if null value then removing the bottom area 
-  if (!check_item)
-    {
-      document.getElementById(id+"_Error").innerHTML = "" 
-    }
-  
-    else
-     {
-          var senddata= {"id":id,"check_item":check_item};
+      var senddata= {"id":id,"check_item":check_item};
+      var csrftoken = getCookie('csrftoken');
+
+      $.ajax({
+        url: 'checkAvailability',
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(senddata),
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRFToken": csrftoken,  // don't forget to include the 'getCookie' function
+        },
+        success: (data) => {
+
+          //get data
           
-          //SEND  DATA
-          httpRequest.send( (JSON.stringify(senddata)) );
-
-
-          httpRequest.onreadystatechange=function(){  
-          if(httpRequest.readyState==4)
-          {
-          
-              if(httpRequest.status==200)
-              {
-              //getting data
-              getDataResponse=JSON.parse(httpRequest.response)
-
-              if ( getDataResponse['id'] == 'Input_Username' ) 
+          if ( data['id']== 'Input_Username' ) 
               {
                     //for username  set error 
-                      setError(id,"username")
+                      setError(id,"username" , data['is_taken'])
                           
                      
               }
 
-              else if ( getDataResponse['id'] == 'Input_Email' ) 
+              else if ( data['id'] == 'Input_Email' ) 
               {
                    //for password set error 
-                      setError(id,"email")
+                      setError(id,"email",data['is_taken'])
               } 
 
               else {
 
                   alert("error")
 
-                  }
-              
+                  }z
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
 
 
-              
+  
 
-              }
-              else
-              {
-                  alert("Error Request Not Send")
-              }
-          }
-      }          
+
   }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //to check email id  format is valid or not

@@ -24,9 +24,10 @@ from .forms import *
 #check username
 def checkAvailability(request):
 
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if is_ajax:
+      if request.method == 'POST':
    
-   if request.method=="POST":
-
         getdata=json.load(request)
         
         print(getdata)
@@ -50,11 +51,12 @@ def checkAvailability(request):
              data = {
             'id': 'null',
                   }
-
+    
         return JsonResponse(data)
-   else:
+   
+    else:
 
-    return redirect('/')
+        return redirect('/')
 
 
 
